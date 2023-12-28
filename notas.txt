@@ -1,5 +1,9 @@
-kafka-topics.sh --bootstrap-server localhost:9092 --topic first_topic --create --partitions 3 --replication-factor 1
+-- create first topic
+kafka-topics.sh --bootstrap-server localhost:9092 --topic crypto_topic --create --partitions 3 --replication-factor 1
 
-kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic first_topic --from-beginning
+-- create producer
+kafka-console-producer.sh --topic producer_crypto_topic --bootstrap-server localhost:9092
 
-bin/kafka-console-producer.sh --topic first_topic --bootstrap-server localhost:9092
+-- my consumer
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic crypto_topic --from-beginning
+

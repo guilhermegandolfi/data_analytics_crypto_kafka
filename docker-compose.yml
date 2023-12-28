@@ -1,3 +1,4 @@
+version: "2"
 services: 
   python:
     build:
@@ -7,6 +8,8 @@ services:
       - '8888:8888'
     volumes: 
       - ./src:/app
+    environment:
+      - JUPYTER_TOKEN=
 
   zookeeper:
     image: docker.io/bitnami/zookeeper:3.9
