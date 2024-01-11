@@ -8,7 +8,7 @@ class KafkaDataProducer():
     def __init__(self, bootstrap_servers):
         self.bootstrap_servers = bootstrap_servers
 
-    def produce(self, topic, message):
+    def producer(self, topic, message):
         try:
             producer = KafkaProducer(bootstrap_servers=self.bootstrap_servers,
                                      value_serializer=lambda x: json.dumps(x).encode('utf-8'))
@@ -27,4 +27,4 @@ if __name__ == "__main__":
                "Hello World_", "Hello World_", "Hello World_", "Hello World____"]
     for i in message:
         kafka_producer = KafkaDataProducer(bootstrap_servers)
-        kafka_producer.produce(topic, i)
+        kafka_producer.producer(topic, i)
