@@ -1,5 +1,5 @@
 git clone https://github.com/guilhermegandolfi/data_analytics_crypto_kafka.git
-# Add Docker's official GPG key:
+
 sudo apt-get update
 sudo apt-get install ca-certificates curl gnupg
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -18,10 +18,8 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 
 sudo apt install docker-compose
 
-sudo groupadd docker
-
 sudo usermod -aG docker $USER
 
 newgrp docker
 
-sudo docker-compose up -d
+docker-compose up kafka

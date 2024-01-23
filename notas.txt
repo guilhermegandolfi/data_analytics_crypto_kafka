@@ -8,4 +8,4 @@ kafka-console-producer.sh --topic producer_crypto_topic --bootstrap-server local
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic crypto_topic --from-beginning
 
 
-ssh -i "crypto-analytics-aws" ubuntu@54.80.204.73
+ssh -i "crypto-analytics-aws" ubuntu@204.236.249.47
