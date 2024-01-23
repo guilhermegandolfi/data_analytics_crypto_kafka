@@ -23,7 +23,7 @@ if __name__ == "__main__":
 
     bootstrap_servers = "data_analytics_crypto_kafka_kafka_1:9092"
     topic = "crypto_topic"
-    message = ["Hello World_", "Hello World_", "Hello World_",
+    message = ["aaa", "aaa", "Hello World_",
                "Hello World_", "Hello World_", "Hello World_", "Hello World____"]
     for i in message:
         kafka_producer = KafkaDataProducer(bootstrap_servers)
