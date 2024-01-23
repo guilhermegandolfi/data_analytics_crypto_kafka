@@ -5,7 +5,7 @@ resource "aws_key_pair" "crypto_analytics_aws" {
 
 resource "aws_instance" "example" {
   ami                         = "ami-0c7217cdde317cfec"
-  instance_type               = "t2.micro"
+  instance_type               = "t2.medium"
   key_name                    = aws_key_pair.crypto_analytics_aws.key_name
   subnet_id                   = aws_subnet.aws_subnet_public.id
   security_groups             = ["${aws_security_group.cyrpto_security_group.id}"]
