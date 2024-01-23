@@ -11,7 +11,7 @@ class KafkaDataConsumer:
     def consumer(self, topic):
         try:
             consumer = KafkaConsumer(
-                topic, bootstrap_servers=self.bootstrap_servers, group_id='my-group2', consumer_timeout_ms=20000)
+                topic, bootstrap_servers=self.bootstrap_servers, auto_offset_reset='earliest',group_id='my-group2', consumer_timeout_ms=20000)
 
             for message in consumer:
 
