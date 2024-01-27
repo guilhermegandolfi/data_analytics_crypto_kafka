@@ -1,6 +1,8 @@
 resource "aws_vpc" "main" {
   cidr_block = "192.168.0.0/16"
   tags       = var.tags
+  enable_dns_support = true
+  enable_dns_hostnames = true
 }
 
 resource "aws_subnet" "aws_subnet_public" {

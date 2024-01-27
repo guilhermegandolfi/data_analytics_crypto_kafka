@@ -27,3 +27,9 @@ variable "region" {
   type    = string
   default = "us-east-1"
 }
+
+
+variable "user_data_kafka" {
+  type    = string
+  default = "us-east-1"
+}

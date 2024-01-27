@@ -1,11 +1,12 @@
 -- create first topic
-kafka-topics.sh --bootstrap-server localhost:9092 --topic crypto_topic --create --partitions 3 --replication-factor 1
+kafka-topics.sh --bootstrap-server localhost:9092 --topic crypto_topic_a --create --partitions 3 --replication-factor 1
 
 -- create producer
-kafka-console-producer.sh --topic producer_crypto_topic --bootstrap-server localhost:9092
+kafka-console-producer.sh --topic crypto_topic_a --bootstrap-server localhost:9092
 
 -- my consumer
-kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic crypto_topic --from-beginning
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic crypto_topic_a --from-beginning
 
 
-ssh -i "crypto-analytics-aws" ubuntu@204.236.249.47
+ssh -i "crypto-analytics-aws" ubuntu@54.224.72.50
+ssh -i "crypto-analytics-aws." ubuntu@54.224.72.50
