@@ -37,13 +37,14 @@ sudo usermod -aG docker $USER
 
 newgrp docker
 
-curl http://169.254.169.254/latest/meta-data/public-hostname
 
-sed "s/ec2-34-201-154-151.compute-1.amazonaws.com/"$PUBLIC_HOSTNAME"/" docker-compose.yml  >> docker-compose_new.yml 
+PUBLIC_HOSTNAME=$(curl http://169.254.169.254/latest/meta-data/public-hostname)
 
-rm docker-compose.yml  
+sed "s/ec2-34-201-154-151.compute-1.amazonaws.com/"$PUBLIC_HOSTNAME"/" data_analytics_crypto_kafka/docker-compose.yml >> data_analytics_crypto_kafka/docker-compose_new.yml 
 
-mv docker-compose_new.yml docker-compose.yml
+rm data_analytics_crypto_kafka/docker-compose.yml  
+
+mv data_analytics_crypto_kafka/docker-compose_new.yml data_analytics_crypto_kafka/docker-compose.yml
 
   EOF
 }
