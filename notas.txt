@@ -2,10 +2,37 @@
 kafka-topics.sh --bootstrap-server localhost:9092 --topic crypto_topic --create --partitions 3 --replication-factor 1
 
 -- create producer
-kafka-console-producer.sh --topic producer_crypto_topic --bootstrap-server localhost:9092
+kafka-console-producer.sh --topic crypto_topic_a --bootstrap-server localhost:9092
 
 -- my consumer
-kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic crypto_topic --from-beginning
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic crypto_topic_a --from-beginning
+
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic crypto_topic_a 
+ssh -i "crypto-analytics-aws" ubuntu@54.224.72.50
+ssh -i "crypto-analytics-aws." ubuntu@54.224.72.50
 
 
-ssh -i "crypto-analytics-aws" ubuntu@204.236.249.47
+-- obter seu ip para o security group
+curl -s -4 https://api.ipify.org
+
+--problema do git do ec2
+sudo chown -R $USER:$USER /data_analytics_crypto_kafka
+
+
+-- obter o dns publico a ec2 
+curl http://169.254.169.254/latest/meta-data/public-hostname
+ec2-52-54-97-225.compute-1.amazonaws.com
+
+PUBLIC_HOSTNAME=$(curl http://169.254.169.254/latest/meta-data/public-hostname)
+
+
+
+sed 's/43/      - KAFKA_CFG_ADVERTISED_LISTENERS=EXTERNAL:///g' docker-compose.yml
+
+
+sed '1d' docker-compose.yml >> new_file.txt && rm text.txt
+
+curl http://169.254.169.254/latest/meta-data/public-hostname
+sed "s/ec2-34-201-154-151.compute-1.amazonaws.com/"$PUBLIC_HOSTNAME"/" docker-compose.yml  >> docker-compose_new.yml 
+rm docker-compose.yml  
+mv docker-compose_new.yml docker-compose.yml

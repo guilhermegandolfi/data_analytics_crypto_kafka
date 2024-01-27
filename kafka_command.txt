@@ -23,3 +23,4 @@ sudo usermod -aG docker $USER
 newgrp docker
 
 docker-compose up kafka
+docker-compose -f data_analytics_crypto_kafka/docker-compose.yml  up -d kafka
