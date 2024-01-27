@@ -36,6 +36,15 @@ sudo apt install docker-compose -y
 sudo usermod -aG docker $USER
 
 newgrp docker
+
+curl http://169.254.169.254/latest/meta-data/public-hostname
+
+sed "s/ec2-34-201-154-151.compute-1.amazonaws.com/"$PUBLIC_HOSTNAME"/" docker-compose.yml  >> docker-compose_new.yml 
+
+rm docker-compose.yml  
+
+mv docker-compose_new.yml docker-compose.yml
+
   EOF
 }
 

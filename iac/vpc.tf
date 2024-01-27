@@ -44,12 +44,32 @@ resource "aws_security_group" "cyrpto_security_group" {
 
 resource "aws_vpc_security_group_ingress_rule" "cyrpto_security_group_ingress_rule" {
   security_group_id = aws_security_group.cyrpto_security_group.id
-  cidr_ipv4         = "0.0.0.0/0"
+  cidr_ipv4         = "186.249.143.160/32"
   from_port         = 22
   ip_protocol       = "tcp"
   to_port           = 22
   tags              = var.tags
 }
+
+resource "aws_vpc_security_group_ingress_rule" "cyrpto_security_group_ingress_rule_zookeper" {
+  security_group_id = aws_security_group.cyrpto_security_group.id
+  cidr_ipv4         = "186.249.143.160/32"
+  from_port         = 2181
+  ip_protocol       = "tcp"
+  to_port           = 2181
+  tags              = var.tags
+}
+
+
+resource "aws_vpc_security_group_ingress_rule" "cyrpto_security_group_ingress_rule_kafka" {
+  security_group_id = aws_security_group.cyrpto_security_group.id
+  cidr_ipv4         = "186.249.143.160/32"
+  from_port         = 9092
+  ip_protocol       = "tcp"
+  to_port           = 9092
+  tags              = var.tags
+}
+
 
 
 resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_ipv4" {
