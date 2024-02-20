@@ -1,5 +1,12 @@
 version: "2"
 services: 
+  python_lib:
+    image: python
+    working_dir: /package
+    volumes: 
+      - .:/package
+    entrypoint: ["pip3", "install", "--target", "/package/python_libs/python/", "-r", "requirements.txt"]
+
   python:
     build:
       context: .
