@@ -55,9 +55,5 @@ resource "aws_lambda_function" "aws_lambda_function_producer" {
       NAM_TOPIC        = "crypto_topic"
     }
   }
-  vpc_config {
-    subnet_ids         = [aws_subnet.aws_subnet_public.id]
-    security_group_ids = ["${aws_security_group.cyrpto_security_group.id}"]
-  }
 
 }
