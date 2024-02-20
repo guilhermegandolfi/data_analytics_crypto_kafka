@@ -1,11 +1,16 @@
 -- create first topic
-kafka-topics.sh --bootstrap-server localhost:9092 --topic crypto_topic --create --partitions 3 --replication-factor 1
+kafka-topics.sh --bootstrap-server localhost:9092 --topic crypto-topic --create --partitions 3 --replication-factor 1
+
+kafka-topics.sh --bootstrap-server localhost:9092 --list
+
+
+sudo docker exec -it data_analytics_crypto_kafka_kafka_1 kafka-topics.sh --bootstrap-server localhost:9092 --list
 
 -- create producer
 kafka-console-producer.sh --topic crypto_topic_a --bootstrap-server localhost:9092
 
 -- my consumer
-kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic crypto_topic_a --from-beginning
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic crypto_topic --from-beginning
 
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic crypto_topic_a 
 ssh -i "crypto-analytics-aws" ubuntu@54.224.72.50
@@ -36,3 +41,6 @@ curl http://169.254.169.254/latest/meta-data/public-hostname
 sed "s/ec2-34-201-154-151.compute-1.amazonaws.com/"$PUBLIC_HOSTNAME"/" docker-compose.yml  >> docker-compose_new.yml 
 rm docker-compose.yml  
 mv docker-compose_new.yml docker-compose.yml
+
+
+docker-compose -f docker-compose-host.yml  up -d kafka

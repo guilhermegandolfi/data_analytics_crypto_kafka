@@ -33,11 +33,6 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 
 sudo apt install docker-compose -y
 
-sudo usermod -aG docker $USER
-
-newgrp docker
-
-
 PUBLIC_HOSTNAME=$(curl http://169.254.169.254/latest/meta-data/public-hostname)
 
 sed "s/ec2-34-201-154-151.compute-1.amazonaws.com/"$PUBLIC_HOSTNAME"/" data_analytics_crypto_kafka/docker-compose.yml >> data_analytics_crypto_kafka/docker-compose_new.yml 
@@ -46,8 +41,12 @@ rm data_analytics_crypto_kafka/docker-compose.yml
 
 mv data_analytics_crypto_kafka/docker-compose_new.yml data_analytics_crypto_kafka/docker-compose.yml
 
+sudo docker-compose -f data_analytics_crypto_kafka/docker-compose.yml  up -d kafka
+
+sleep 240
+
+sudo docker exec -it data_analytics_crypto_kafka_kafka_1 kafka-topics.sh --bootstrap-server localhost:9092 --topic crypto_topic --create --partitions 3 --replication-factor 1
+
   EOF
 }
-
-
 

@@ -1,7 +1,7 @@
 resource "aws_vpc" "main" {
-  cidr_block = "192.168.0.0/16"
-  tags       = var.tags
-  enable_dns_support = true
+  cidr_block           = "192.168.0.0/16"
+  tags                 = var.tags
+  enable_dns_support   = true
   enable_dns_hostnames = true
 }
 
@@ -44,7 +44,7 @@ resource "aws_security_group" "cyrpto_security_group" {
 
 resource "aws_vpc_security_group_ingress_rule" "cyrpto_security_group_ingress_rule" {
   security_group_id = aws_security_group.cyrpto_security_group.id
-  cidr_ipv4         = "186.249.143.160/32"
+  cidr_ipv4         = "0.0.0.0/0"
   from_port         = 22
   ip_protocol       = "tcp"
   to_port           = 22
@@ -53,7 +53,7 @@ resource "aws_vpc_security_group_ingress_rule" "cyrpto_security_group_ingress_ru
 
 resource "aws_vpc_security_group_ingress_rule" "cyrpto_security_group_ingress_rule_zookeper" {
   security_group_id = aws_security_group.cyrpto_security_group.id
-  cidr_ipv4         = "186.249.143.160/32"
+  cidr_ipv4         = "0.0.0.0/0"
   from_port         = 2181
   ip_protocol       = "tcp"
   to_port           = 2181
@@ -63,7 +63,7 @@ resource "aws_vpc_security_group_ingress_rule" "cyrpto_security_group_ingress_ru
 
 resource "aws_vpc_security_group_ingress_rule" "cyrpto_security_group_ingress_rule_kafka" {
   security_group_id = aws_security_group.cyrpto_security_group.id
-  cidr_ipv4         = "186.249.143.160/32"
+  cidr_ipv4         = "0.0.0.0/0"
   from_port         = 9092
   ip_protocol       = "tcp"
   to_port           = 9092
