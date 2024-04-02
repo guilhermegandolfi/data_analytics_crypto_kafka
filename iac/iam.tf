@@ -6,7 +6,20 @@ data "aws_iam_policy_document" "policy_document_to_access_s3" {
     "s3:ListBucket"]
     resources = ["${aws_s3_bucket.bucket_s3.arn}", "${aws_s3_bucket.bucket_s3.arn}/*"]
   }
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "logs:CreateLogGroup",
+      "logs:CreateLogStream",
+      "logs:PutLogEvents",
+    ]
+
+    resources = ["arn:aws:logs:*:*:*"]
+  }
 }
+
+
 
 resource "aws_iam_policy" "policy_document_to_access_s3" {
   name        = "policy_${var.project}_${lookup(var.enviorment, var.env)}_to_access_bucket_s3"

@@ -49,6 +49,7 @@ services:
       - KAFKA_CFG_LISTENERS=EXTERNAL://:9092
       - KAFKA_CFG_ADVERTISED_LISTENERS=EXTERNAL://ec2-34-201-154-151.compute-1.amazonaws.com:9092
       - KAFKA_INTER_BROKER_LISTENER_NAME=EXTERNAL
+
     depends_on:
       - zookeeper
 volumes:

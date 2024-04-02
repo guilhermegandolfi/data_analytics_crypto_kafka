@@ -29,6 +29,4 @@ class AmazonS3Connect:
         except Exception as e:
             logging.error(e)
 
-if __name__ == "__main__":
-    s3_import = AmazonS3Connect('crypto-analytics-dev')
-    s3_import.upload_file('','')
+            
