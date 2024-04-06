@@ -23,7 +23,7 @@ class KafkaDataConsumer:
     def consumer(self, topic):
         try:
             logging.info(f"Init of consumer message from kafka topic:{topic}")
-            nam_file=f"{topic}_{self.load_delta()}.json"
+            nam_file=f"/tmp/{topic}_{self.load_delta()}.json"
             consumer = KafkaConsumer(
                 topic, bootstrap_servers=self.bootstrap_servers, auto_offset_reset='earliest',
                 value_deserializer = lambda x:json.loads(x.decode('utf-8')),consumer_timeout_ms=20000)
