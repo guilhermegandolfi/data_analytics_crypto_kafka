@@ -22,9 +22,8 @@ class AmazonS3Connect:
     def upload_file(self, nam_file, prefix):
         try:
             logging.info(f"upload file {nam_file} to bucket: {self.bucket}")
-            nam_file = nam_file.replace("/tmp/", "")
             s3 = boto3.client('s3')
-            s3.upload_file(nam_file, self.bucket, f"raw_data/{prefix}/{self.prefix_partition()}/{nam_file}")
+            s3.upload_file(nam_file, self.bucket, f"raw_data/{prefix}/{self.prefix_partition()}/{nam_file.replace('/tmp/','')}")
             logging.info(f"upload file completed")
         except Exception as e:
             logging.error(e)
