@@ -1,3 +1,4 @@
+
 resource "aws_key_pair" "crypto_analytics_aws" {
   key_name   = "crypto-analytics-aws"
   public_key = file("~/crypto-analytics-aws.pub")
@@ -43,8 +44,6 @@ mv data_analytics_crypto_kafka/docker-compose_new.yml data_analytics_crypto_kafk
 
 sudo docker-compose -f data_analytics_crypto_kafka/docker-compose.yml  up -d kafka
 
-sudo docker exec -it data_analytics_crypto_kafka_kafka_1 kafka-topics.sh --bootstrap-server $PUBLIC_HOSTNAME:9092 --topic crypto_topic --create --partitions 1 --replication-factor 1
-
+sudo docker exec -it data_analytics_crypto_kafka_kafka_1 kafka-topics.sh --bootstrap-server localhost:9092 --topic crypto-topic --create --partitions 3 --replication-factor 1
   EOF
 }
-

@@ -3,8 +3,11 @@ kafka-topics.sh --bootstrap-server localhost:9092 --topic crypto-topic --create 
 
 kafka-topics.sh --bootstrap-server localhost:9092 --list
 
-
 sudo docker exec -it data_analytics_crypto_kafka_kafka_1 kafka-topics.sh --bootstrap-server localhost:9092 --list
+sudo docker exec -it data_analytics_crypto_kafka_kafka_1 kafka-topics.sh --bootstrap-server localhost:9092 --topic crypto_topic --create --partitions 3 --replication-factor 1
+
+
+crypto_topic
 
 -- create producer
 kafka-console-producer.sh --topic crypto_topic_a --bootstrap-server localhost:9092
@@ -16,6 +19,7 @@ kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic crypto_topic
 ssh -i "crypto-analytics-aws" ubuntu@54.224.72.50
 ssh -i "crypto-analytics-aws." ubuntu@54.224.72.50
 
+ssh -i ubuntu@ec2-3-94-91-32.compute-1.amazonaws.com
 
 -- obter seu ip para o security group
 curl -s -4 https://api.ipify.org
