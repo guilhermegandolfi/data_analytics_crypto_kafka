@@ -24,18 +24,22 @@ class KafkaDataConsumer:
         try:
             logging.info(f"Init of consumer message from kafka topic:{topic}")
             nam_file=f"{topic}_{self.load_delta()}.json"
-            consumer = KafkaConsumer(
-                topic, bootstrap_servers=self.bootstrap_servers, auto_offset_reset='earliest',
-                value_deserializer = lambda x:json.loads(x.decode('utf-8')),consumer_timeout_ms=20000)
-                
+            consumer = KafkaConsumer(topic,bootstrap_servers=[f'{self.bootstrap_servers}:9092'],
+            consumer_timeout_ms=2000, auto_offset_reset='earliest',value_deserializer= lambda x:json.loads(x.decode('utf-8')))
+            
             logging.info(f"Creating file to save the message {nam_file}")
-            with open(nam_file, "w") as f:
+            
+            with open("/tmp/"+nam_file, "w") as f:
                 for message in consumer:
                     json.dump(message.value, f)
-                    
-            logging.info("Message was consumed")
-            return nam_file
+                    #consumer.commit()
 
+            #consumer.close()
+            logging.info("Message was consumed")
+            
+            return "/tmp/"+nam_file
+            
+            
         except Exception as e:
             logging.error(e)
             print(e)
@@ -43,8 +47,8 @@ class KafkaDataConsumer:
 
 if __name__ == "__main__":
 
-    bootstrap_servers = "ec2-3-91-104-38.compute-1.amazonaws.com:9092"
-    topic = "crypto_topic"
+    bootstrap_servers = "data_analytics_crypto_kafka_kafka_1:9092"
+    topic = "crypto-topic"
     kafka_consumer = KafkaDataConsumer(bootstrap_servers)
     kafka_consumer.consumer(topic)
 

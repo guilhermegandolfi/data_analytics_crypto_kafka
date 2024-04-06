@@ -20,8 +20,8 @@ def lambda_handler(event, lambda_context):
         nam_bucket = os.environ['NAM_BUCKET']
         logging.info(f'Started wirte file to bucket:{nam_bucket}') 
         s3_import = AmazonS3Connect(nam_bucket)
-        nam_prefix = f"raw_data/{s3_import.prefix_partition()}"
-        s3_import.upload_file(nam_prefix, nam_file)
+        nam_prefix = f"{nam_topic}"
+        s3_import.upload_file(nam_file, nam_prefix)
 
     except Exception as e:
         logging.error(e)
